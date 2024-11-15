@@ -13,6 +13,16 @@ class AppTextStyles {
     fontWeight: FontWeight.w400,
     color: AppColors.grey,
   );
+  static const title = TextStyle(
+    fontSize: 13,
+    fontWeight: FontWeight.bold,
+    color: AppColors.title,
+  );
+  static const subTitle = TextStyle(
+    fontSize: 10,
+    fontWeight: FontWeight.w500,
+    color: AppColors.grey,
+  );
   static const labelTextStyle = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w500,

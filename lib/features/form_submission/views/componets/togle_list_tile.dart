@@ -16,11 +16,13 @@ class TogleListTile extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          label,
-          style: isActive
-              ? AppTextStyles.labelTextStyle
-              : AppTextStyles.labelTextStyle.copyWith(color: AppColors.grey),
+        Expanded(
+          child: Text(
+            label,
+            style: isActive
+                ? AppTextStyles.labelTextStyle
+                : AppTextStyles.labelTextStyle.copyWith(color: AppColors.grey),
+          ),
         ),
         Transform.scale(
           scale: 0.8,
