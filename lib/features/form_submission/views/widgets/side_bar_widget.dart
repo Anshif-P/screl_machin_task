@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:screl_machin_task/common/utils/app_colors.dart';
 import 'package:screl_machin_task/common/utils/app_text_styles.dart';
 import 'package:screl_machin_task/common/utils/screen_utils.dart';
 import 'package:screl_machin_task/features/form_submission/model/form_step_model/form_step_model.dart';
 
+import '../../riverpod/form_step_provider/form_step_provider.dart';
 import '../widgets/form_step_list_tile.dart';
 
-class SideBarWidget extends StatelessWidget {
+class SideBarWidget extends ConsumerWidget {
   const SideBarWidget({
     super.key,
-    required this.formSteps,
   });
 
-  final List<FormStepsModel> formSteps;
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final formSteps = ref.watch(formStepsProvider);
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
