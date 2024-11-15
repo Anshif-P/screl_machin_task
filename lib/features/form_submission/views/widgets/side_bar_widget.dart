@@ -5,7 +5,7 @@ import 'package:screl_machin_task/common/utils/app_text_styles.dart';
 import 'package:screl_machin_task/common/utils/screen_utils.dart';
 import 'package:screl_machin_task/features/form_submission/model/form_step_model/form_step_model.dart';
 
-import '../../riverpod/form_step_provider/form_step_provider.dart';
+import '../../view_model/form_step_view_model.dart';
 import '../widgets/form_step_list_tile.dart';
 
 class SideBarWidget extends ConsumerWidget {
@@ -15,7 +15,9 @@ class SideBarWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final formSteps = ref.watch(formStepsProvider);
+    final viewModel = FormStepsViewModel(ref);
+    final formSteps = viewModel.formSteps;
+    final currentIndex = viewModel.currentIndex;
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
@@ -29,7 +31,8 @@ class SideBarWidget extends ConsumerWidget {
             return FormStepListTile(
               title: step.title,
               subTitle: step.label,
-              isActive: index == 0 || step.status == Status.completed,
+              isActive:
+                  currentIndex == index || step.status == Status.completed,
               index: index + 1,
             );
           },

@@ -7,10 +7,11 @@ class TogleListTile extends StatelessWidget {
     super.key,
     required this.label,
     required this.isActive,
+    this.onChanged,
   });
   final String label;
   final bool isActive;
-
+  final void Function(bool)? onChanged;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -28,7 +29,7 @@ class TogleListTile extends StatelessWidget {
           scale: 0.8,
           child: Switch(
             value: isActive,
-            onChanged: (v) {},
+            onChanged: onChanged,
             thumbIcon: const WidgetStatePropertyAll(Icon(
               Icons.circle,
               color: AppColors.white,

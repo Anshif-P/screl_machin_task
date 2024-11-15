@@ -20,7 +20,7 @@ class FormSubmissionPage extends StatelessWidget {
             Expanded(
               child: Row(
                 children: [
-                  const Expanded(
+                  Expanded(
                     flex: 2,
                     child: FormWidget(),
                   ),

@@ -7,11 +7,15 @@ import '../../../../common/utils/screen_utils.dart';
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     super.key,
+    required this.controller,
+    required this.validator,
     required this.label,
     required this.hint,
     this.minLine = 1,
     this.helperText,
   });
+  final TextEditingController controller;
+  final FormFieldValidator validator;
   final String label;
   final String hint;
   final String? helperText;
@@ -27,7 +31,13 @@ class CustomTextFormField extends StatelessWidget {
         ),
         kHeight5,
         TextFormField(
+          controller: controller,
+          validator: validator,
           decoration: InputDecoration(
+              focusedErrorBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red)),
+              errorBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red)),
               enabledBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: AppColors.grey)),
               focusedBorder: const OutlineInputBorder(
