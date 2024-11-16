@@ -89,7 +89,7 @@ class FormWidgetState extends ConsumerState<FormWidget> {
                       controller: nameController,
                       validator: (value) => Validations.emptyValidation(value),
                       label: '"From" Name',
-                      hint: 'Fromm Anne',
+                      hint: 'From Anne',
                     ),
                   ),
                   kWidth5,
