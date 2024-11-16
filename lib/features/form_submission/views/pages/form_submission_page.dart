@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:screl_machin_task/common/utils/screen_utils.dart';
 import 'package:screl_machin_task/common/utils/app_colors.dart';
 
+import '../../view_model/form_input_view_model.dart';
 import '../widgets/form_widget.dart';
 import '../widgets/side_bar_widget.dart';
 
-class FormSubmissionPage extends StatelessWidget {
+class FormSubmissionPage extends ConsumerWidget {
   const FormSubmissionPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    FormInputViewModel(ref).retrieveSavedDrafts();
     return Scaffold(
       backgroundColor: AppColors.scaffoldBackgroundColor,
       body: Padding(

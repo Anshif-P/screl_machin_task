@@ -16,12 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$FormInputModel {
+  @HiveField(0)
   String? get subject => throw _privateConstructorUsedError;
+  @HiveField(1)
   String? get preview => throw _privateConstructorUsedError;
+  @HiveField(2)
   String? get name => throw _privateConstructorUsedError;
+  @HiveField(3)
   String? get email => throw _privateConstructorUsedError;
+  @HiveField(4)
   bool get runOncePerCustomer => throw _privateConstructorUsedError;
+  @HiveField(5)
   bool get customAudience => throw _privateConstructorUsedError;
+  @HiveField(6)
+  int? get id => throw _privateConstructorUsedError;
 
   /// Create a copy of FormInputModel
   /// with the given fields replaced by the non-null parameter values.
@@ -37,12 +45,13 @@ abstract class $FormInputModelCopyWith<$Res> {
       _$FormInputModelCopyWithImpl<$Res, FormInputModel>;
   @useResult
   $Res call(
-      {String? subject,
-      String? preview,
-      String? name,
-      String? email,
-      bool runOncePerCustomer,
-      bool customAudience});
+      {@HiveField(0) String? subject,
+      @HiveField(1) String? preview,
+      @HiveField(2) String? name,
+      @HiveField(3) String? email,
+      @HiveField(4) bool runOncePerCustomer,
+      @HiveField(5) bool customAudience,
+      @HiveField(6) int? id});
 }
 
 /// @nodoc
@@ -66,6 +75,7 @@ class _$FormInputModelCopyWithImpl<$Res, $Val extends FormInputModel>
     Object? email = freezed,
     Object? runOncePerCustomer = null,
     Object? customAudience = null,
+    Object? id = freezed,
   }) {
     return _then(_value.copyWith(
       subject: freezed == subject
@@ -92,6 +102,10 @@ class _$FormInputModelCopyWithImpl<$Res, $Val extends FormInputModel>
           ? _value.customAudience
           : customAudience // ignore: cast_nullable_to_non_nullable
               as bool,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -105,12 +119,13 @@ abstract class _$$FormInputModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? subject,
-      String? preview,
-      String? name,
-      String? email,
-      bool runOncePerCustomer,
-      bool customAudience});
+      {@HiveField(0) String? subject,
+      @HiveField(1) String? preview,
+      @HiveField(2) String? name,
+      @HiveField(3) String? email,
+      @HiveField(4) bool runOncePerCustomer,
+      @HiveField(5) bool customAudience,
+      @HiveField(6) int? id});
 }
 
 /// @nodoc
@@ -132,6 +147,7 @@ class __$$FormInputModelImplCopyWithImpl<$Res>
     Object? email = freezed,
     Object? runOncePerCustomer = null,
     Object? customAudience = null,
+    Object? id = freezed,
   }) {
     return _then(_$FormInputModelImpl(
       subject: freezed == subject
@@ -158,6 +174,10 @@ class __$$FormInputModelImplCopyWithImpl<$Res>
           ? _value.customAudience
           : customAudience // ignore: cast_nullable_to_non_nullable
               as bool,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -166,29 +186,39 @@ class __$$FormInputModelImplCopyWithImpl<$Res>
 
 class _$FormInputModelImpl implements _FormInputModel {
   const _$FormInputModelImpl(
-      {required this.subject,
-      required this.preview,
-      required this.name,
-      required this.email,
-      required this.runOncePerCustomer,
-      required this.customAudience});
+      {@HiveField(0) required this.subject,
+      @HiveField(1) required this.preview,
+      @HiveField(2) required this.name,
+      @HiveField(3) required this.email,
+      @HiveField(4) required this.runOncePerCustomer,
+      @HiveField(5) required this.customAudience,
+      @HiveField(6) required this.id});
 
   @override
+  @HiveField(0)
   final String? subject;
   @override
+  @HiveField(1)
   final String? preview;
   @override
+  @HiveField(2)
   final String? name;
   @override
+  @HiveField(3)
   final String? email;
   @override
+  @HiveField(4)
   final bool runOncePerCustomer;
   @override
+  @HiveField(5)
   final bool customAudience;
+  @override
+  @HiveField(6)
+  final int? id;
 
   @override
   String toString() {
-    return 'FormInputModel(subject: $subject, preview: $preview, name: $name, email: $email, runOncePerCustomer: $runOncePerCustomer, customAudience: $customAudience)';
+    return 'FormInputModel(subject: $subject, preview: $preview, name: $name, email: $email, runOncePerCustomer: $runOncePerCustomer, customAudience: $customAudience, id: $id)';
   }
 
   @override
@@ -203,12 +233,13 @@ class _$FormInputModelImpl implements _FormInputModel {
             (identical(other.runOncePerCustomer, runOncePerCustomer) ||
                 other.runOncePerCustomer == runOncePerCustomer) &&
             (identical(other.customAudience, customAudience) ||
-                other.customAudience == customAudience));
+                other.customAudience == customAudience) &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, subject, preview, name, email,
-      runOncePerCustomer, customAudience);
+      runOncePerCustomer, customAudience, id);
 
   /// Create a copy of FormInputModel
   /// with the given fields replaced by the non-null parameter values.
@@ -222,25 +253,35 @@ class _$FormInputModelImpl implements _FormInputModel {
 
 abstract class _FormInputModel implements FormInputModel {
   const factory _FormInputModel(
-      {required final String? subject,
-      required final String? preview,
-      required final String? name,
-      required final String? email,
-      required final bool runOncePerCustomer,
-      required final bool customAudience}) = _$FormInputModelImpl;
+      {@HiveField(0) required final String? subject,
+      @HiveField(1) required final String? preview,
+      @HiveField(2) required final String? name,
+      @HiveField(3) required final String? email,
+      @HiveField(4) required final bool runOncePerCustomer,
+      @HiveField(5) required final bool customAudience,
+      @HiveField(6) required final int? id}) = _$FormInputModelImpl;
 
   @override
+  @HiveField(0)
   String? get subject;
   @override
+  @HiveField(1)
   String? get preview;
   @override
+  @HiveField(2)
   String? get name;
   @override
+  @HiveField(3)
   String? get email;
   @override
+  @HiveField(4)
   bool get runOncePerCustomer;
   @override
+  @HiveField(5)
   bool get customAudience;
+  @override
+  @HiveField(6)
+  int? get id;
 
   /// Create a copy of FormInputModel
   /// with the given fields replaced by the non-null parameter values.

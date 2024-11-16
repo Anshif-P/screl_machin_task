@@ -4,8 +4,8 @@ import 'package:screl_machin_task/common/utils/app_colors.dart';
 import 'package:screl_machin_task/common/utils/form_validation.dart';
 import 'package:screl_machin_task/common/utils/screen_utils.dart';
 import 'package:screl_machin_task/features/form_submission/view_model/form_input_view_model.dart';
-
 import '../../../../common/utils/app_text_styles.dart';
+import '../../model/form_input_model/form_input_model.dart';
 import '../../view_model/form_step_view_model.dart';
 import '../componets/custom_button.dart';
 import '../componets/custom_form_field.dart';
@@ -25,6 +25,7 @@ class FormWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final viewModel = FormStepsViewModel(ref);
     final inputViewModel = FormInputViewModel(ref);
+    loadInput(inputViewModel.currentInput, viewModel.currentIndex);
     return SingleChildScrollView(
       child: Container(
         padding: const EdgeInsets.all(12),
@@ -126,11 +127,24 @@ class FormWidget extends ConsumerWidget {
               kHeight20,
               Row(
                 children: [
-                  const Expanded(
+                  Expanded(
                     flex: 2,
-                    child: CustomButton(
-                      label: 'Save Draft',
-                      hasOutline: true,
+                    child: InkWell(
+                      onTap: () {
+                        if (formKey.currentState!.validate()) {
+                          inputViewModel.saveDraft(
+                              id: viewModel.currentIndex,
+                              subject: subjectController.text,
+                              preview: previewController.text,
+                              name: nameController.text,
+                              email: mailController.text,
+                              context: context);
+                        }
+                      },
+                      child: const CustomButton(
+                        label: 'Save Draft',
+                        hasOutline: true,
+                      ),
                     ),
                   ),
                   kWidth5,
@@ -140,16 +154,17 @@ class FormWidget extends ConsumerWidget {
                       onTap: () {
                         if (formKey.currentState!.validate()) {
                           inputViewModel.submit(
+                            id: viewModel.currentIndex,
                             subject: subjectController.text,
                             preview: previewController.text,
                             name: nameController.text,
                             email: mailController.text,
                           );
+                          viewModel.nextStep();
                           subjectController.clear();
                           previewController.clear();
                           nameController.clear();
                           mailController.clear();
-                          viewModel.nextStep();
                         }
                       },
                       child: const CustomButton(
@@ -164,5 +179,14 @@ class FormWidget extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  loadInput(FormInputModel? input, int index) {
+    if (input?.id == index) {
+      nameController.text = input?.name ?? '';
+      subjectController.text = input?.subject ?? '';
+      mailController.text = input?.email ?? '';
+      previewController.text = input?.preview ?? '';
+    }
   }
 }
