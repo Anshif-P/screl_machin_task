@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:screl_machin_task/common/utils/app_colors.dart';
 import 'package:screl_machin_task/common/utils/app_text_styles.dart';
+import 'package:screl_machin_task/common/utils/responsive.dart';
 import 'package:screl_machin_task/common/utils/screen_utils.dart';
 import 'package:screl_machin_task/features/form_submission/model/form_step_model/form_step_model.dart';
 
@@ -37,7 +38,7 @@ class SideBarWidget extends ConsumerWidget {
             );
           },
         ),
-        const Spacer(),
+        Responsive.isDesktop(context) ? const Spacer() : kHeight20,
         Padding(
           padding: const EdgeInsets.all(16),
           child: Column(

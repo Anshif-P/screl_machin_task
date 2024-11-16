@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:screl_machin_task/common/utils/app_colors.dart';
 import 'package:screl_machin_task/common/utils/form_validation.dart';
+import 'package:screl_machin_task/common/utils/responsive.dart';
 import 'package:screl_machin_task/common/utils/screen_utils.dart';
 import 'package:screl_machin_task/features/form_submission/view_model/form_input_view_model.dart';
 import '../../../../common/utils/app_text_styles.dart';
@@ -11,10 +12,14 @@ import '../componets/custom_button.dart';
 import '../componets/custom_form_field.dart';
 import '../componets/togle_list_tile.dart';
 
-class FormWidget extends ConsumerWidget {
-  FormWidget({
-    super.key,
-  });
+class FormWidget extends ConsumerStatefulWidget {
+  const FormWidget({super.key});
+
+  @override
+  FormWidgetState createState() => FormWidgetState();
+}
+
+class FormWidgetState extends ConsumerState<FormWidget> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController subjectController = TextEditingController();
   final TextEditingController previewController = TextEditingController();
@@ -22,11 +27,25 @@ class FormWidget extends ConsumerWidget {
   final TextEditingController mailController = TextEditingController();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  void dispose() {
+    subjectController.dispose();
+    previewController.dispose();
+    nameController.dispose();
+    mailController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(
+    BuildContext context,
+  ) {
     final viewModel = FormStepsViewModel(ref);
     final inputViewModel = FormInputViewModel(ref);
     loadInput(inputViewModel.currentInput, viewModel.currentIndex);
     return SingleChildScrollView(
+      physics: Responsive.isMobile(context)
+          ? const NeverScrollableScrollPhysics()
+          : null,
       child: Container(
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:screl_machin_task/common/utils/responsive.dart';
 import 'package:screl_machin_task/common/utils/screen_utils.dart';
 import 'package:screl_machin_task/common/utils/app_colors.dart';
 
@@ -16,28 +17,41 @@ class FormSubmissionPage extends ConsumerWidget {
     FormInputViewModel(ref).retrieveSavedDrafts();
     return Scaffold(
       backgroundColor: AppColors.scaffoldBackgroundColor,
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 35.h),
-        child: Column(
-          children: [
-            Expanded(
-              child: Row(
+      body: Responsive.isMobile(context)
+          ? SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+              child: SafeArea(
+                child: Column(
+                  children: [
+                    const SideBarWidget(),
+                    kHeight20,
+                    FormWidget(),
+                  ],
+                ),
+              ),
+            )
+          : Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 35.h),
+              child: Column(
                 children: [
                   Expanded(
-                    flex: 2,
-                    child: FormWidget(),
-                  ),
-                  kWidth10,
-                  const Expanded(
-                    flex: 1,
-                    child: SideBarWidget(),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 2,
+                          child: FormWidget(),
+                        ),
+                        kWidth10,
+                        const Expanded(
+                          flex: 1,
+                          child: SideBarWidget(),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
             ),
-          ],
-        ),
-      ),
     );
   }
 }
